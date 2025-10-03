@@ -9,3 +9,4 @@ Repositorio para almacenar el juego de ahoracado (PHP)
     
     - Actualmente el codigo del juego, asi como su parte visual es simple y mejorable, (Su readme específico se puede encontrar en [README](main/ahorcado/src/public/README.md)).
     - Se comienza a trabajar con el ```mock``` (Creando el issue correspondiente). 
+    test
