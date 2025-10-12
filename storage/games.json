@@ -1,0 +1,11 @@
+{
+    "games": {
+        "d1ca2bcbfa3b1c0b": {
+            "id": "d1ca2bcbfa3b1c0b",
+            "word": "costumbre",
+            "guesses": [],
+            "maxAttempts": 6,
+            "status": "in_progress"
+        }
+    }
+}

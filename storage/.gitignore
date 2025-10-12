@@ -1,0 +1,9 @@
+vendor/
+node_modules/
+.DS_Store
+.vscode/
+.idea/
+storage/games.json
+storage/*.tmp
+.cache/
+composer.lock

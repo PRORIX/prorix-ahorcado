@@ -1,27 +1,60 @@
-# prorix-ahorcado
+# Prorix Ahorcado
 
-Repositorio para almacenar el juego de ahoracado (PHP)
+Aplicación web del clásico juego del ahorcado, enfocada en un código limpio y una arquitectura modular que facilita el mantenimiento y la extensión del proyecto.
 
-### Proyecto:
+## Notas del parche v4.0.0
 
-#### Se ha dado un proyecto de juego Ahorcado en php (1.0.0) y vamos a realizar mejoras visuales y de codigo.
+### Refactor de arquitectura
 
-- Primeramente vamos a crear un ``mock`` de como queremos que se vea visualmente el juego tras la mejora.
+- Se reorganizó todo el código en las capas `Application`, `Domain`, `Infrastructure` y `Presentation`, alineando el proyecto con principios de diseño limpio.
+- Se introdujo un autoloader propio en `src/Infrastructure/Autoload/Autoloader.php`, eliminando `require` dispersos y manteniendo los namespaces bajo control.
+- Controladores y vistas fueron movidos a `src/Presentation`, con layouts reutilizables y recursos estáticos bajo `public/` para servirlos desde el servidor web con mayor claridad.
+- La configuración sensible quedó centralizada en `config/config.php`, facilitando ajustes de rutas y parámetros sin tocar la lógica del juego.
+- Los archivos JSON (`storage/games.json` y `storage/words.json`) se aíslan de la lógica de dominio, permitiendo reemplazar la capa de persistencia sin afectar el resto del sistema.
 
-  - Actualmente el codigo del juego, asi como su parte visual es simple y mejorable, (Su readme específico se puede encontrar en [README](main/ahorcado/src/public/README.md)).
-  - Se comienza a trabajar con el ``mock`` (Creando el issue correspondiente).
+## Nuevo esquema de directorios
 
-#### v1- (1.0.1) Se ha completado la mejora del juego:
-
-Se ha añadido una mejoria en el codigo, dividiendo la clase ``index.php``` en varias clases, y dividiendo cada una con funciones para asegurar que el funcionamiento del codigo sea perfecto, así como su optimización.
-
-#### v2- (1.0.2) Imagenes utilizadas
-
-Las imágenes utilizadas en el juego han sido creadas por mi, he tratado de hacer una imagen simple (daodo que no soy experto en pixel art) pero me he asegurado de que el 100% de los elementos utilizados son propios.
-
-Dichas imagenes tienen derechos de autor.
-
-
-#### v3- (1.0.3) Comentarios
-
-El codigo ha sido comentado con detalle para asegurar el mayor comprendimiento posible del mismo. Ante cualquier duda, sugerencia o error pido disculpas y acepto criticas constructivas.
+```text
+prorix-ahorcado/
+|-- config/
+|   `-- config.php
+|-- images/
+|-- public/
+|   |-- index.php
+|   |-- assets/
+|   |   `-- css/
+|   |       `-- ahorcado.css
+|   `-- images/
+|       `-- ahorcado/
+|-- src/
+|   |-- Application/
+|   |   `-- Services/
+|   |       `-- GameService.php
+|   |-- Domain/
+|   |   |-- Entity/
+|   |   |   `-- Game.php
+|   |   `-- Repository/
+|   |       |-- GameRepositoryInterface.php
+|   |       `-- WordRepositoryInterface.php
+|   |-- Infrastructure/
+|   |   |-- Autoload/
+|   |   |   `-- Autoloader.php
+|   |   `-- Persistence/
+|   |       |-- JsonGameRepository.php
+|   |       `-- JsonWordRepository.php
+|   `-- Presentation/
+|       |-- Controllers/
+|       |   `-- GameController.php
+|       `-- Views/
+|           |-- _layout_top.php
+|           |-- _layout_bottom.php
+|           |-- error.php
+|           |-- home.php
+|           `-- play.php
+|-- storage/
+|   |-- games.json
+|   `-- words.json
+|-- Dockerfile
+|-- docker-compose.yml
+`-- README.md
+```
